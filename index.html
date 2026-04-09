@@ -252,7 +252,10 @@
     box-shadow: 0 0 6px rgba(76,175,80,0.5);
   }
 
-  .key-status-dot.anonymous { background: var(--gold); }
+  .key-status-dot.anonymous {
+    background: var(--gold);
+    box-shadow: 0 0 6px rgba(201,168,76,0.5);
+  }
 
   .key-status-text {
     font-family: 'Courier Prime', monospace;
@@ -1117,15 +1120,17 @@
   // ══════════════════════════════════════
   //  KEY MANAGEMENT
   // ══════════════════════════════════════
-  function refreshKeyStatus() {
+  function refreshKeyStatus(verified) {
     const dot  = document.getElementById('key-status-dot');
     const text = document.getElementById('key-status-text');
     const oauth = document.getElementById('oauth-btn');
     const sout  = document.getElementById('signout-btn');
 
     if (apiKey) {
-      dot.className  = 'key-status-dot active';
-      text.textContent = `Signed in · pk_${apiKey.slice(3, 8)}...`;
+      dot.className  = verified ? 'key-status-dot active' : 'key-status-dot anonymous';
+      text.textContent = verified
+        ? `Signed in · pk_${apiKey.slice(3, 8)}...`
+        : `Key active · pk_${apiKey.slice(3, 8)}... (unverified)`;
       oauth.style.display = 'none';
       sout.style.display  = 'inline';
     } else {
@@ -1142,24 +1147,38 @@
     })
       .then(r => {
         if (r.ok) {
-          document.getElementById('key-status-dot').className = 'key-status-dot active';
-          document.getElementById('key-status-text').textContent = `Signed in · pk_${apiKey.slice(3, 8)}...`;
+          refreshKeyStatus(true);
         } else {
           clearApiKey();
           showToast('Session expired — please sign in again.');
         }
       })
-      .catch(() => { /* keep state on network error */ });
+      .catch(() => { refreshKeyStatus(false); });
   }
 
   function handleOAuthCallback() {
+    // Pollinations OAuth returns the key in the URL hash: #api_key=pk_xxx
+    const hash = window.location.hash;
+    if (hash && hash.includes('=')) {
+      const hashParams = new URLSearchParams(hash.slice(1)); // strip leading #
+      const key = hashParams.get('api_key') || hashParams.get('key') || hashParams.get('token');
+      if (key && key.startsWith('pk_')) {
+        apiKey = key;
+        localStorage.setItem('ioe_pk', apiKey);
+        // Clean the hash from URL without page reload
+        window.history.replaceState({}, '', window.location.pathname + window.location.search);
+        refreshKeyStatus();
+        showToast('Signed in with Pollinations ✓');
+        return;
+      }
+    }
+    // Also check query params as fallback
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('token') || params.get('api_key') || params.get('key');
-    if (token) {
-      // Clean the URL without reloading
-      window.history.replaceState({}, '', window.location.pathname);
-      apiKey = token.startsWith('pk_') ? token : `pk_${token}`;
+    const key = params.get('api_key') || params.get('key') || params.get('token');
+    if (key && key.startsWith('pk_')) {
+      apiKey = key;
       localStorage.setItem('ioe_pk', apiKey);
+      window.history.replaceState({}, '', window.location.pathname);
       refreshKeyStatus();
       showToast('Signed in with Pollinations ✓');
     }
