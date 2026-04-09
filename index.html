@@ -34,7 +34,6 @@
     cursor: default;
   }
 
-  /* ── NOISE OVERLAY ── */
   body::before {
     content: '';
     position: fixed;
@@ -45,9 +44,6 @@
     opacity: 0.4;
   }
 
-  /* ══════════════════════════════════════
-     SCREEN SYSTEM
-  ══════════════════════════════════════ */
   .screen {
     display: none;
     min-height: 100vh;
@@ -139,13 +135,6 @@
     margin-bottom: 4px;
   }
 
-  .divider {
-    width: 200px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 24px auto;
-  }
-
   .divider-ornament {
     display: flex;
     align-items: center;
@@ -171,7 +160,7 @@
     font-size: clamp(14px, 2.5vw, 18px);
     color: var(--cream2);
     line-height: 1.6;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     opacity: 0.85;
   }
 
@@ -203,10 +192,7 @@
     min-height: 90px;
   }
 
-  .concept-input::placeholder {
-    color: var(--muted);
-    font-style: italic;
-  }
+  .concept-input::placeholder { color: var(--muted); font-style: italic; }
 
   .concept-input:focus {
     border-color: var(--gold);
@@ -219,7 +205,7 @@
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
 
   .example-pill {
@@ -238,6 +224,135 @@
     border-color: var(--gold);
     color: var(--gold);
     background: rgba(201,168,76,0.05);
+  }
+
+  /* KEY STATUS BAR */
+  .key-status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 10px 16px;
+    background: rgba(201,168,76,0.04);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .key-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    flex-shrink: 0;
+  }
+
+  .key-status-dot.active {
+    background: #4caf50;
+    box-shadow: 0 0 6px rgba(76,175,80,0.5);
+  }
+
+  .key-status-dot.anonymous { background: var(--gold); }
+
+  .key-status-text {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .key-status-bar .signin-btn {
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+
+  .key-status-bar .signin-btn:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  .key-status-bar .signout-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 2px 6px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .key-status-bar .signout-btn:hover { color: var(--cream2); }
+
+  /* ARTIFACT COUNT PICKER */
+  .count-picker-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .count-picker-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .count-picker {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .count-pill {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    border: 1px solid rgba(122,112,96,0.3);
+    border-radius: 2px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  .count-pill:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .count-pill.selected {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    box-shadow: 0 0 8px rgba(201,168,76,0.15);
+  }
+
+  .time-note {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+    text-align: right;
   }
 
   .commission-btn {
@@ -269,22 +384,172 @@
 
   .commission-btn:hover::before { transform: scaleX(1); }
   .commission-btn:hover { color: var(--bg); }
-
   .commission-btn span { position: relative; z-index: 1; }
-
-  .commission-btn:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-  }
+  .commission-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   .commission-btn:disabled::before { display: none; }
 
   .footer-note {
     font-family: 'Courier Prime', monospace;
     font-size: 11px;
     color: var(--muted);
-    margin-top: 32px;
+    margin-top: 24px;
     letter-spacing: 0.1em;
   }
+
+  /* ══════════════════════════════════════
+     KEY MODAL
+  ══════════════════════════════════════ */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    padding: 36px 40px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 2px 6px;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--cream); }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .modal-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--cream2);
+    margin-bottom: 24px;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .modal-hint {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .modal-input {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border2);
+    border-radius: 2px;
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    font-size: 14px;
+    padding: 14px 16px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    text-align: left;
+    margin-bottom: 6px;
+  }
+
+  .modal-input::placeholder { color: var(--muted); font-size: 12px; }
+  .modal-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.2);
+  }
+
+  .modal-input.error { border-color: var(--red); }
+
+  .modal-error-msg {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: #c0392b;
+    letter-spacing: 0.05em;
+    text-align: left;
+    margin-bottom: 12px;
+    display: none;
+  }
+
+  .modal-error-msg.show { display: block; }
+
+  .modal-link {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
+    letter-spacing: 0.1em;
+    transition: opacity 0.2s;
+  }
+
+  .modal-link:hover { opacity: 0.7; }
+
+  .modal-apply-btn {
+    width: 100%;
+    background: var(--gold);
+    border: none;
+    color: var(--bg);
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  .modal-apply-btn:hover { background: var(--gold2); }
+
+  .modal-skip-btn {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+  }
+
+  .modal-skip-btn:hover { color: var(--cream2); }
 
   /* ══════════════════════════════════════
      SCREEN 2 — LOADING
@@ -297,7 +562,8 @@
 
   .loading-inner {
     text-align: center;
-    max-width: 500px;
+    max-width: 600px;
+    width: 100%;
   }
 
   .loading-crest {
@@ -328,10 +594,7 @@
     animation: spinSlow 5s linear infinite reverse;
   }
 
-  .loading-emoji {
-    animation: spinSlow 8s linear infinite reverse;
-    display: block;
-  }
+  .loading-emoji { animation: spinSlow 8s linear infinite reverse; display: block; }
 
   .loading-title {
     font-family: 'Playfair Display', serif;
@@ -376,12 +639,88 @@
     letter-spacing: 0.15em;
   }
 
+  /* LIVE ARTIFACT STREAM */
+  .loading-artifacts {
+    margin-top: 32px;
+    text-align: left;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 8px;
+  }
+
+  .loading-artifact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .loading-artifact-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--muted);
+  }
+
+  .loading-artifact-icon.done {
+    border-color: var(--border2);
+  }
+
+  .loading-artifact-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, var(--bg3) 0%, var(--bg2) 50%, var(--bg3) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+  }
+
+  .loading-artifact-info { flex: 1; min-width: 0; }
+
+  .loading-artifact-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .loading-artifact-name.pending { color: var(--muted); }
+
+  .loading-artifact-status {
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .loading-artifact-status.ready { color: var(--gold); }
+  .loading-artifact-status.error  { color: #c0392b; }
+
   /* ══════════════════════════════════════
      SCREEN 3 — THE EXHIBIT
   ══════════════════════════════════════ */
-  #screen-exhibit {
-    padding: 0;
-  }
+  #screen-exhibit { padding: 0; }
 
   .exhibit-header {
     border-bottom: 1px solid var(--border);
@@ -409,16 +748,11 @@
     font-weight: 900;
     color: var(--cream);
     line-height: 1.15;
-    margin: 20px 0 20px;
+    margin: 20px auto;
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .exhibit-title em {
-    color: var(--gold);
-    font-style: italic;
-  }
+  .exhibit-title em { color: var(--gold); font-style: italic; }
 
   .curator-intro-box {
     background: rgba(201,168,76,0.04);
@@ -458,18 +792,16 @@
     cursor: pointer;
     transition: all 0.2s;
     margin-top: 10px;
+    border-radius: 1px;
   }
 
-  .hear-intro-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
+  .hear-intro-btn:hover,
   .hear-intro-btn.playing {
     border-color: var(--gold);
     color: var(--gold);
-    animation: glow 1.5s ease-in-out infinite;
   }
+
+  .hear-intro-btn.playing { animation: glow 1.5s ease-in-out infinite; }
 
   @keyframes glow {
     0%, 100% { box-shadow: none; }
@@ -559,9 +891,7 @@
     filter: sepia(15%) contrast(1.05);
   }
 
-  .artifact-card:hover .artifact-img {
-    transform: scale(1.03);
-  }
+  .artifact-card:hover .artifact-img { transform: scale(1.03); }
 
   .artifact-img-placeholder {
     width: 100%;
@@ -626,10 +956,7 @@
     border-radius: 1px;
   }
 
-  .audio-guide-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
+  .audio-guide-btn:hover { border-color: var(--gold); color: var(--gold); }
 
   .audio-guide-btn.playing {
     border-color: var(--gold);
@@ -645,9 +972,7 @@
     flex-shrink: 0;
   }
 
-  .audio-guide-btn.playing .dot {
-    animation: blink 1s step-end infinite;
-  }
+  .audio-guide-btn.playing .dot { animation: blink 1s step-end infinite; }
 
   @keyframes blink {
     0%, 100% { opacity: 1; }
@@ -684,22 +1009,12 @@
     padding: 12px 24px;
     cursor: pointer;
     transition: all 0.2s;
+    border-radius: 2px;
   }
 
-  .footer-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
-  .footer-btn.primary {
-    border-color: var(--gold);
-    color: var(--gold);
-  }
-
-  .footer-btn.primary:hover {
-    background: var(--gold);
-    color: var(--bg);
-  }
+  .footer-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-btn.primary { border-color: var(--gold); color: var(--gold); }
+  .footer-btn.primary:hover { background: var(--gold); color: var(--bg); }
 
   /* TOAST */
   .toast {
@@ -730,35 +1045,45 @@
     .exhibit-footer { padding: 24px 20px; }
     .artifacts-grid { grid-template-columns: 1fr; }
     .curator-intro-box { padding: 16px 18px; }
+    .modal-box { padding: 28px 24px; }
+    .count-picker-row { flex-direction: column; align-items: flex-start; }
+    .time-note { text-align: left; }
   }
 
-  /* IMAGE LOADING SHIMMER */
-  .shimmer {
-    background: linear-gradient(
-      90deg,
-      var(--bg3) 0%,
-      var(--bg2) 50%,
-      var(--bg3) 100%
-    );
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-  }
-
-  @keyframes shimmer {
-    from { background-position: 200% 0; }
-    to   { background-position: -200% 0; }
-  }
-
-  /* SCROLL BAR */
   ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
 
-  /* SELECTION */
   ::selection { background: rgba(201,168,76,0.2); color: var(--gold); }
 </style>
 </head>
 <body>
+
+<!-- ══════════════════════════════════════
+     KEY MODAL
+══════════════════════════════════════ -->
+<div class="modal-overlay" id="key-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close-btn" aria-label="Close">&#215;</button>
+    <div class="modal-title">Enter Pollinations Key</div>
+    <div class="modal-subtitle">
+      Paste your publishable API key to unlock higher generation limits and faster processing.
+    </div>
+    <div class="modal-hint">Publishable Key (starts with pk_)</div>
+    <input
+      type="text"
+      class="modal-input"
+      id="modal-key-input"
+      placeholder="pk_nvaoh5YW2umswogk"
+      autocomplete="off"
+      spellcheck="false"
+    >
+    <div class="modal-error-msg" id="modal-error-msg">Invalid key format. Must start with pk_ and be at least 16 characters.</div>
+    <div class="modal-link" id="modal-get-link">Get a free API key at enter.pollinations.ai &#8599;</div>
+    <button class="modal-apply-btn" id="modal-apply-btn">Apply Key</button>
+    <button class="modal-skip-btn" id="modal-skip-btn">Continue without key (limited)</button>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════
      SCREEN 1 — ENTRY HALL
@@ -766,20 +1091,25 @@
 <div id="screen-entry" class="screen active">
   <div class="entry-inner">
     <div class="museum-crest">🏛️</div>
-
     <div class="institute-of">The</div>
     <div class="institute-name">Institute of Everything</div>
-
     <div class="divider-ornament">
       <span>✦</span>
       <span style="font-family:'Courier Prime',monospace;font-size:10px;letter-spacing:0.3em;color:var(--muted)">EST. MMXXIV · BERLIN</span>
       <span>✦</span>
     </div>
-
     <p class="tagline">
       A museum of absolute authority on any subject.<br>
       Submit your concept. We will make it significant.
     </p>
+
+    <!-- KEY STATUS -->
+    <div class="key-status-bar" id="key-status-bar">
+      <div class="key-status-dot" id="key-status-dot"></div>
+      <span class="key-status-text" id="key-status-text">Checking key status...</span>
+      <button class="signin-btn" id="signin-btn">Enter Pollinations Key</button>
+      <button class="signout-btn" id="signout-btn" style="display:none">Clear</button>
+    </div>
 
     <label class="input-label" for="concept">Your exhibit concept</label>
     <textarea
@@ -791,11 +1121,24 @@
 
     <div class="examples-row" id="examples-row"></div>
 
+    <!-- ARTIFACT COUNT PICKER -->
+    <div class="count-picker-row">
+      <span class="count-picker-label">Artifacts</span>
+      <div class="count-picker" id="count-picker">
+        <button class="count-pill" data-count="1">1</button>
+        <button class="count-pill selected" data-count="3">3</button>
+        <button class="count-pill" data-count="5">5</button>
+        <button class="count-pill" data-count="7">7</button>
+        <button class="count-pill" data-count="10">10</button>
+      </div>
+      <span class="time-note" id="time-note">3 artifacts · ~1–2 min estimated</span>
+    </div>
+
     <button class="commission-btn" id="commission-btn" onclick="startGeneration()">
       <span>Commission the Exhibit →</span>
     </button>
 
-    <p class="footer-note">No signup. No admission fee. Pretension: mandatory.</p>
+    <p class="footer-note">No signup required · Pretension: mandatory</p>
   </div>
 </div>
 
@@ -812,7 +1155,10 @@
     <div class="progress-track">
       <div class="progress-fill" id="progress-fill"></div>
     </div>
-    <div class="progress-label" id="progress-label">0 of 5 artifacts catalogued</div>
+    <div class="progress-label" id="progress-label">Generating your exhibit...</div>
+
+    <!-- LIVE ARTIFACT STREAM -->
+    <div class="loading-artifacts" id="loading-artifacts"></div>
   </div>
 </div>
 
@@ -860,43 +1206,203 @@
     "Neolithic Origins of the Open-Office Plan",
   ];
 
-  let activeAudio = null;
-  let activeBtn   = null;
-  let introAudio  = null;
-  let exhibitData = null;
+  const TIME_ESTIMATES = {
+    1:  '~30s estimated',
+    3:  '~1–2 min estimated',
+    5:  '~3–5 min estimated',
+    7:  '~5–7 min estimated',
+    10: '~8–12 min estimated',
+  };
+
+  const GEN_URL = 'https://gen.pollinations.ai';
+
+  let activeAudio    = null;
+  let activeBtn      = null;
+  let introAudio     = null;
+  let exhibitData    = null;
   let artifactAudios = [];
+  let apiKey         = localStorage.getItem('ioe_pk') || null;
+  let artifactCount  = 3;
 
   // ══════════════════════════════════════
   //  INIT
   // ══════════════════════════════════════
   (function init() {
+    // Examples
     const row = document.getElementById('examples-row');
     const shuffled = [...EXAMPLES].sort(() => Math.random() - 0.5).slice(0, 5);
     shuffled.forEach(ex => {
       const pill = document.createElement('button');
       pill.className = 'example-pill';
       pill.textContent = ex;
-      pill.onclick = () => {
-        document.getElementById('concept').value = ex;
-      };
+      pill.onclick = () => { document.getElementById('concept').value = ex; };
       row.appendChild(pill);
     });
 
     document.getElementById('concept').addEventListener('keydown', e => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        startGeneration();
-      }
+      if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); startGeneration(); }
     });
+
+    // Count picker
+    const picker = document.getElementById('count-picker');
+    picker.querySelectorAll('.count-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        picker.querySelectorAll('.count-pill').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        artifactCount = parseInt(btn.dataset.count, 10);
+        document.getElementById('time-note').textContent =
+          `${artifactCount} artifact${artifactCount !== 1 ? 's' : ''} · ${TIME_ESTIMATES[artifactCount]}`;
+      });
+    });
+
+    // Key status bar
+    refreshKeyStatus();
+
+    document.getElementById('signin-btn').addEventListener('click', openKeyModal);
+    document.getElementById('signout-btn').addEventListener('click', clearApiKey);
+
+    // Modal
+    document.getElementById('modal-close-btn').addEventListener('click', closeKeyModal);
+    document.getElementById('modal-skip-btn').addEventListener('click', closeKeyModal);
+    document.getElementById('modal-apply-btn').addEventListener('click', applyApiKey);
+    document.getElementById('modal-key-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') applyApiKey();
+      e.stopPropagation();
+    });
+    document.getElementById('modal-get-link').addEventListener('click', () => {
+      window.open('https://enter.pollinations.ai', '_blank', 'noopener');
+    });
+    document.getElementById('key-modal').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeKeyModal();
+    });
+
+    // Validate stored key
+    if (apiKey) validateStoredKey();
   })();
+
+  // ══════════════════════════════════════
+  //  KEY MANAGEMENT
+  // ══════════════════════════════════════
+  function refreshKeyStatus() {
+    const dot  = document.getElementById('key-status-dot');
+    const text = document.getElementById('key-status-text');
+    const sin  = document.getElementById('signin-btn');
+    const sout = document.getElementById('signout-btn');
+
+    if (apiKey) {
+      dot.className  = 'key-status-dot anonymous';
+      text.textContent = `Key active · pk_${apiKey.slice(3, 8)}...`;
+      sin.style.display  = 'none';
+      sout.style.display = 'inline';
+    } else {
+      dot.className  = 'key-status-dot';
+      text.textContent = 'No key · using free tier (slower)';
+      sin.style.display  = 'inline-block';
+      sout.style.display = 'none';
+    }
+  }
+
+  function validateStoredKey() {
+    fetch(`${GEN_URL}/account/key`, {
+      headers: { 'Authorization': `Bearer ${apiKey}` }
+    })
+      .then(r => {
+        if (r.ok) {
+          document.getElementById('key-status-dot').className = 'key-status-dot active';
+          document.getElementById('key-status-text').textContent = `Key valid · pk_${apiKey.slice(3, 8)}...`;
+        } else {
+          clearApiKey();
+          showToast('Stored key is invalid — please enter a new one.');
+        }
+      })
+      .catch(() => { /* keep state on network error */ });
+  }
+
+  function openKeyModal() {
+    const modal = document.getElementById('key-modal');
+    const input = document.getElementById('modal-key-input');
+    const err   = document.getElementById('modal-error-msg');
+    input.value = apiKey ? `pk_${apiKey.slice(3)}` : '';
+    err.classList.remove('show');
+    input.classList.remove('error');
+    modal.classList.add('open');
+    setTimeout(() => input.focus(), 100);
+  }
+
+  function closeKeyModal() {
+    document.getElementById('key-modal').classList.remove('open');
+  }
+
+  function applyApiKey() {
+    const raw   = document.getElementById('modal-key-input').value.trim();
+    const err   = document.getElementById('modal-error-msg');
+    const input = document.getElementById('modal-key-input');
+    err.classList.remove('show');
+    input.classList.remove('error');
+
+    if (!raw) {
+      err.textContent = 'Please enter an API key.';
+      err.classList.add('show');
+      input.classList.add('error');
+      return;
+    }
+
+    const fullKey = raw.startsWith('pk_') ? raw : `pk_${raw}`;
+    if (!fullKey.startsWith('pk_') || fullKey.length < 16) {
+      err.textContent = 'Invalid key format. Must start with pk_ and be at least 16 characters.';
+      err.classList.add('show');
+      input.classList.add('error');
+      return;
+    }
+
+    apiKey = fullKey;
+    localStorage.setItem('ioe_pk', fullKey);
+    closeKeyModal();
+    refreshKeyStatus();
+    showToast('API key applied successfully.');
+  }
+
+  function clearApiKey() {
+    apiKey = null;
+    localStorage.removeItem('ioe_pk');
+    refreshKeyStatus();
+    showToast('API key cleared.');
+  }
+
+  // ══════════════════════════════════════
+  //  HELPERS
+  // ══════════════════════════════════════
+  function authHeaders() {
+    return apiKey ? { 'Authorization': `Bearer ${apiKey}` } : {};
+  }
+
+  function authQuery() {
+    return apiKey ? `&key=${encodeURIComponent(apiKey)}` : '';
+  }
+
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
 
   // ══════════════════════════════════════
   //  SCREEN TRANSITIONS
   // ══════════════════════════════════════
   function showScreen(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    const el = document.getElementById(id);
-    el.classList.add('active');
+    document.getElementById(id).classList.add('active');
     window.scrollTo(0, 0);
   }
 
@@ -921,49 +1427,88 @@
 
     document.getElementById('commission-btn').disabled = true;
     showScreen('screen-loading');
-    setProgress(0, '0 of 5 artifacts catalogued', 'Consulting the curatorial committee...');
+    setProgress(5, 'Preparing exhibit...', 'Consulting the curatorial committee...');
+
+    const stream = document.getElementById('loading-artifacts');
+    stream.innerHTML = '';
 
     try {
       // Step 1 — Generate text
-      exhibitData = await generateExhibitText(concept);
-      setProgress(10, '0 of 5 artifacts catalogued', 'Dispatching archaeologists to locate artifacts...');
+      exhibitData = await generateExhibitText(concept, artifactCount);
+      setProgress(10, 'Exhibit concept ready', 'Dispatching archaeologists to locate artifacts...');
 
-      // Step 2 — Render exhibit shell immediately
+      // Step 2 — Render exhibit shell
       renderExhibitShell(exhibitData);
 
-      // Step 3 — Generate images sequentially (rate limit safe)
-      const imageUrls = [];
-      for (let i = 0; i < exhibitData.artifacts.length; i++) {
-        const url = await fetchImage(exhibitData.artifacts[i].imagePrompt, i);
-        imageUrls.push(url);
-        const done = i + 1;
-        setProgress(
-          10 + (done / exhibitData.artifacts.length) * 55,
-          `${done} of 5 artifacts catalogued`,
-          done < 5
-            ? 'Photographing artifacts under controlled lighting...'
-            : 'Recording the audio guide in a climate-controlled studio...'
-        );
-        updateArtifactImage(i, url);
-        await delay(350);
-      }
+      // Step 3 — Generate artifacts streaming
+      const total = exhibitData.artifacts.length;
+      const imageUrls = new Array(total).fill(null);
+      artifactAudios  = new Array(total).fill(null);
 
-      // Step 4 — Generate audio in parallel
-      setProgress(65, '5 of 5 artifacts catalogued', 'Recording the audio guide in a climate-controlled studio...');
-      artifactAudios = new Array(exhibitData.artifacts.length).fill(null);
-      const audioPromises = exhibitData.artifacts.map((art, i) =>
-        fetchAudio(art.placard, 'onyx').then(url => {
-          artifactAudios[i] = url;
-          enableAudioBtn(i, url);
-        }).catch(() => { /* silently skip */ })
-      );
-      const introPromise = fetchAudio(exhibitData.curatorNote, 'onyx')
+      // Build streaming rows upfront
+      exhibitData.artifacts.forEach((art, i) => {
+        const row = document.createElement('div');
+        row.className = 'loading-artifact-item';
+        row.id = `la-item-${i}`;
+        row.innerHTML = `
+          <div class="loading-artifact-icon shimmer" id="la-icon-${i}">
+            <span style="opacity:0.4;">⬚</span>
+          </div>
+          <div class="loading-artifact-info">
+            <div class="loading-artifact-name pending" id="la-name-${i}">${escHtml(art.name)}</div>
+            <div class="loading-artifact-status" id="la-status-${i}">Waiting...</div>
+          </div>
+        `;
+        stream.appendChild(row);
+      });
+
+      // Kick off intro audio in background
+      fetchAudio(exhibitData.curatorNote, 'onyx')
         .then(url => { introAudio = url; })
         .catch(() => {});
 
-      await Promise.all([...audioPromises, introPromise]);
-      setProgress(100, '5 of 5 artifacts catalogued', 'Your exhibit is ready for viewing.');
+      // Generate images sequentially — each shows as soon as it's done
+      let doneCount = 0;
+      for (let i = 0; i < total; i++) {
+        updateStreamStatus(i, 'Generating image...');
 
+        try {
+          const url = await fetchImage(exhibitData.artifacts[i].imagePrompt, i);
+          imageUrls[i] = url;
+          doneCount++;
+          updateArtifactImage(i, url);
+          updateStreamStatus(i, url ? 'Image ready ✓' : 'Image failed', !!url);
+
+          setProgress(
+            10 + (doneCount / total) * 60,
+            `${doneCount} of ${total} artifacts catalogued`,
+            doneCount < total
+              ? 'Photographing artifacts under controlled lighting...'
+              : 'Finalizing audio guide...'
+          );
+        } catch {
+          imageUrls[i] = null;
+          doneCount++;
+          updateArtifactImage(i, null);
+          updateStreamStatus(i, 'Image failed', false);
+        }
+
+        // Fire audio for this artifact in parallel (don't await)
+        fetchAudio(exhibitData.artifacts[i].placard, 'onyx')
+          .then(url => {
+            artifactAudios[i] = url;
+            enableAudioBtn(i, url);
+          })
+          .catch(() => {});
+
+        await delay(400);
+      }
+
+      // Step 4 — Final audio wait
+      setProgress(70, `${total} images done`, 'Finalizing audio guides...');
+      await delay(1000);
+
+      setProgress(100, 'Exhibit ready', 'Your exhibit is ready for viewing.');
       await delay(600);
       showScreen('screen-exhibit');
 
@@ -975,10 +1520,26 @@
     }
   }
 
+  function updateStreamStatus(i, msg, success) {
+    const statusEl = document.getElementById(`la-status-${i}`);
+    const nameEl    = document.getElementById(`la-name-${i}`);
+    const iconEl    = document.getElementById(`la-icon-${i}`);
+
+    if (statusEl) {
+      statusEl.textContent = msg;
+      statusEl.className = 'loading-artifact-status' + (success === true ? ' ready' : success === false ? ' error' : '');
+    }
+    if (nameEl && success !== undefined) nameEl.classList.remove('pending');
+    if (iconEl && success) {
+      iconEl.classList.remove('shimmer');
+      iconEl.classList.add('done');
+    }
+  }
+
   // ══════════════════════════════════════
   //  TEXT GENERATION
   // ══════════════════════════════════════
-  async function generateExhibitText(concept) {
+  async function generateExhibitText(concept, count) {
     const prompt = `You are the eccentric curator of "The Institute of Everything," a museum that takes any concept and treats it with utmost academic seriousness.
 
 Given the concept below, output ONLY a valid JSON object — no markdown, no explanation, no backticks — with this exact structure:
@@ -990,45 +1551,37 @@ Given the concept below, output ONLY a valid JSON object — no markdown, no exp
     {
       "name": "string (artifact name with fake era or date, e.g. 'The Sacred Relic of the Forgotten Shortcut, circa 2007 CE')",
       "placard": "string (2-3 sentences of dry, academic museum placard copy. Deadpan. Treat the absurd as completely real and historically important.)",
-      "imagePrompt": "string (detailed prompt for a museum artifact photograph: the object on a museum pedestal or in a display case, dramatic spotlighting, dark museum background, ultra-realistic, archival photography style, 8mm film grain, aged patina. Describe the physical object itself very specifically — what it looks like, its material, its condition.)"
+      "imagePrompt": "string (detailed prompt for a museum artifact photograph: the object on a museum pedestal or in a display case, dramatic spotlighting, dark museum background, ultra-realistic, archival photography style, 8mm film grain, aged patina. Describe the physical object itself very specifically.)"
     }
   ]
 }
 
-Generate exactly 5 artifacts. The tone must be completely straight-faced academic seriousness at all times. The more absurd the concept, the graver the writing must be. Never wink at the joke.
+Generate exactly ${count} artifacts. The tone must be completely straight-faced academic seriousness at all times. The more absurd the concept, the graver the writing must be. Never wink at the joke.
 
 User's concept: "${concept}"`;
 
-    const res = await fetch('https://text.pollinations.ai/', {
+    const res = await fetch(`${GEN_URL}/v1/chat/completions`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...authHeaders(),
+      },
       body: JSON.stringify({
         messages: [{ role: 'user', content: prompt }],
         model: 'openai',
-        jsonMode: true
+        response_format: { type: 'json_object' },
       })
     });
 
-    if (!res.ok) throw new Error('Text API failed');
-    const data = await res.json();
-
-    // Extract text from response
-    let raw = '';
-    if (typeof data === 'string') {
-      raw = data;
-    } else if (data.choices) {
-      raw = data.choices[0]?.message?.content || '';
-    } else if (Array.isArray(data)) {
-      raw = JSON.stringify(data);
-    } else {
-      raw = JSON.stringify(data);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `API error ${res.status}`);
     }
 
-    // Clean and parse
+    const data = await res.json();
+    let raw = data.choices?.[0]?.message?.content || '';
     raw = raw.replace(/```json|```/g, '').trim();
-    // Sometimes the API wraps it in an extra layer
-    const parsed = typeof raw === 'object' ? raw : JSON.parse(raw);
-    return parsed;
+    return JSON.parse(raw);
   }
 
   // ══════════════════════════════════════
@@ -1036,7 +1589,7 @@ User's concept: "${concept}"`;
   // ══════════════════════════════════════
   async function fetchImage(prompt, index) {
     const seed = Math.floor(Math.random() * 900000) + 100000;
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512&nologo=true&model=flux&seed=${seed}`;
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=512&height=512&nologo=true&model=flux&seed=${seed}${authQuery()}`;
     try {
       const res = await fetch(url);
       if (!res.ok) return null;
@@ -1051,7 +1604,7 @@ User's concept: "${concept}"`;
   //  AUDIO GENERATION
   // ══════════════════════════════════════
   async function fetchAudio(text, voice = 'onyx') {
-    const url = `https://text.pollinations.ai/${encodeURIComponent(text)}?model=openai-audio&voice=${voice}`;
+    const url = `${GEN_URL}/audio/${encodeURIComponent(text)}?voice=${voice}${authQuery()}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error('Audio API failed');
     const blob = await res.blob();
@@ -1062,11 +1615,9 @@ User's concept: "${concept}"`;
   //  RENDER
   // ══════════════════════════════════════
   function renderExhibitShell(data) {
-    // Title
     document.getElementById('exhibit-title').innerHTML = data.exhibitTitle || 'Untitled Exhibit';
     document.getElementById('curator-note').textContent = data.curatorNote || '';
 
-    // Artifacts grid
     const grid = document.getElementById('artifacts-grid');
     grid.innerHTML = '';
 
@@ -1079,8 +1630,7 @@ User's concept: "${concept}"`;
 
       card.innerHTML = `
         <div class="artifact-id">${id}</div>
-        <div class="artifact-image-wrap shimmer" id="img-wrap-${i}">
-        </div>
+        <div class="artifact-image-wrap shimmer" id="img-wrap-${i}"></div>
         <div class="artifact-info">
           <div class="artifact-name">${escHtml(art.name)}</div>
           <div class="artifact-placard">${escHtml(art.placard)}</div>
@@ -1121,20 +1671,14 @@ User's concept: "${concept}"`;
   //  AUDIO PLAYBACK
   // ══════════════════════════════════════
   function stopActive() {
-    if (activeAudio) {
-      activeAudio.pause();
-      activeAudio.currentTime = 0;
-    }
-    if (activeBtn) activeBtn.classList.remove('playing');
+    if (activeAudio) { activeAudio.pause(); activeAudio.currentTime = 0; }
+    if (activeBtn)   activeBtn.classList.remove('playing');
     activeAudio = null;
     activeBtn   = null;
   }
 
   function playArtifactAudio(i, url, btn) {
-    if (activeAudio && activeBtn === btn) {
-      stopActive();
-      return;
-    }
+    if (activeAudio && activeBtn === btn) { stopActive(); return; }
     stopActive();
     const audio = new Audio(url);
     audio.onended = () => { btn.classList.remove('playing'); activeAudio = null; activeBtn = null; };
@@ -1147,10 +1691,7 @@ User's concept: "${concept}"`;
   function playIntro() {
     const btn = document.getElementById('hear-intro-btn');
     if (!introAudio) return;
-    if (activeAudio && activeBtn === btn) {
-      stopActive();
-      return;
-    }
+    if (activeAudio && activeBtn === btn) { stopActive(); return; }
     stopActive();
     const audio = new Audio(introAudio);
     audio.onended = () => { btn.classList.remove('playing'); activeAudio = null; activeBtn = null; };
@@ -1165,12 +1706,10 @@ User's concept: "${concept}"`;
   // ══════════════════════════════════════
   function shareExhibit() {
     const title = exhibitData?.exhibitTitle || 'This Exhibit';
-    const text = `"${title}" — Now on display at The Institute of Everything.\ntheinstituteofeverything.ai`;
-    navigator.clipboard.writeText(text).then(() => {
-      showToast('Copied to clipboard');
-    }).catch(() => {
-      showToast('Could not copy — try manually');
-    });
+    const text  = `"${title}" — Now on display at The Institute of Everything.`;
+    navigator.clipboard.writeText(text)
+      .then(() => showToast('Copied to clipboard'))
+      .catch(() => showToast('Could not copy — try manually'));
   }
 
   function resetToEntry() {
@@ -1181,27 +1720,9 @@ User's concept: "${concept}"`;
     document.getElementById('concept').value = '';
     document.getElementById('commission-btn').disabled = false;
     document.getElementById('artifacts-grid').innerHTML = '';
+    document.getElementById('loading-artifacts').innerHTML = '';
+    setProgress(0, '', '');
     showScreen('screen-entry');
-  }
-
-  // ══════════════════════════════════════
-  //  HELPERS
-  // ══════════════════════════════════════
-  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-  function escHtml(str) {
-    return String(str)
-      .replace(/&/g,'&amp;')
-      .replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;')
-      .replace(/"/g,'&quot;');
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
   }
 </script>
 </body>
