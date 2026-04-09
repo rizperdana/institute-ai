@@ -1391,6 +1391,7 @@ User's concept: "${concept}"`;
       body: JSON.stringify({
         messages: [{ role: 'user', content: prompt }],
         model: 'openai',
+        model: 'openai-fast',
         response_format: { type: 'json_object' },
       })
     });
