@@ -397,159 +397,24 @@
   }
 
   /* ══════════════════════════════════════
-     KEY MODAL
+     SIGN IN BUTTON
   ══════════════════════════════════════ */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    animation: fadeIn 0.2s ease;
-  }
-
-  .modal-overlay.open { display: flex; }
-
-  .modal-box {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: 4px;
-    padding: 36px 40px;
-    max-width: 480px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.8);
-    position: relative;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 22px;
-    cursor: pointer;
-    line-height: 1;
-    padding: 2px 6px;
-    transition: color 0.2s;
-  }
-
-  .modal-close:hover { color: var(--cream); }
-
-  .modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gold);
-    margin-bottom: 8px;
-    letter-spacing: 0.05em;
-  }
-
-  .modal-subtitle {
-    font-family: 'IM Fell English', serif;
-    font-style: italic;
-    font-size: 14px;
-    color: var(--cream2);
-    margin-bottom: 24px;
-    line-height: 1.5;
-    opacity: 0.8;
-  }
-
-  .modal-hint {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    text-align: left;
-  }
-
-  .modal-input {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border2);
-    border-radius: 2px;
-    color: var(--cream);
-    font-family: 'Courier Prime', monospace;
-    font-size: 14px;
-    padding: 14px 16px;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    text-align: left;
-    margin-bottom: 6px;
-  }
-
-  .modal-input::placeholder { color: var(--muted); font-size: 12px; }
-  .modal-input:focus {
-    border-color: var(--gold);
-    box-shadow: 0 0 0 1px rgba(201,168,76,0.2);
-  }
-
-  .modal-input.error { border-color: var(--red); }
-
-  .modal-error-msg {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    color: #c0392b;
-    letter-spacing: 0.05em;
-    text-align: left;
-    margin-bottom: 12px;
-    display: none;
-  }
-
-  .modal-error-msg.show { display: block; }
-
-  .modal-link {
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    color: var(--gold);
-    text-decoration: underline;
-    cursor: pointer;
-    margin-bottom: 20px;
-    display: inline-block;
-    letter-spacing: 0.1em;
-    transition: opacity 0.2s;
-  }
-
-  .modal-link:hover { opacity: 0.7; }
-
-  .modal-apply-btn {
-    width: 100%;
+  .key-status-bar .oauth-btn {
     background: var(--gold);
     border: none;
     color: var(--bg);
-    font-family: 'Playfair Display', serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 14px 24px;
+    padding: 5px 14px;
     cursor: pointer;
     transition: background 0.2s;
     border-radius: 2px;
-    margin-bottom: 10px;
+    font-weight: 700;
   }
 
-  .modal-apply-btn:hover { background: var(--gold2); }
-
-  .modal-skip-btn {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-family: 'Courier Prime', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    padding: 4px;
-    transition: color 0.2s;
-  }
-
-  .modal-skip-btn:hover { color: var(--cream2); }
+  .key-status-bar .oauth-btn:hover { background: var(--gold2); }
 
   /* ══════════════════════════════════════
      SCREEN 2 — LOADING
@@ -1060,32 +925,6 @@
 <body>
 
 <!-- ══════════════════════════════════════
-     KEY MODAL
-══════════════════════════════════════ -->
-<div class="modal-overlay" id="key-modal">
-  <div class="modal-box">
-    <button class="modal-close" id="modal-close-btn" aria-label="Close">&#215;</button>
-    <div class="modal-title">Enter Pollinations Key</div>
-    <div class="modal-subtitle">
-      Paste your publishable API key to unlock higher generation limits and faster processing.
-    </div>
-    <div class="modal-hint">Publishable Key (starts with pk_)</div>
-    <input
-      type="text"
-      class="modal-input"
-      id="modal-key-input"
-      placeholder="pk_nvaoh5YW2umswogk"
-      autocomplete="off"
-      spellcheck="false"
-    >
-    <div class="modal-error-msg" id="modal-error-msg">Invalid key format. Must start with pk_ and be at least 16 characters.</div>
-    <div class="modal-link" id="modal-get-link">Get a free API key at enter.pollinations.ai &#8599;</div>
-    <button class="modal-apply-btn" id="modal-apply-btn">Apply Key</button>
-    <button class="modal-skip-btn" id="modal-skip-btn">Continue without key (limited)</button>
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════
      SCREEN 1 — ENTRY HALL
 ══════════════════════════════════════ -->
 <div id="screen-entry" class="screen active">
@@ -1107,8 +946,8 @@
     <div class="key-status-bar" id="key-status-bar">
       <div class="key-status-dot" id="key-status-dot"></div>
       <span class="key-status-text" id="key-status-text">Checking key status...</span>
-      <button class="signin-btn" id="signin-btn">Enter Pollinations Key</button>
-      <button class="signout-btn" id="signout-btn" style="display:none">Clear</button>
+      <button class="oauth-btn" id="oauth-btn">Sign in with Pollinations</button>
+      <button class="signout-btn" id="signout-btn" style="display:none">Sign out</button>
     </div>
 
     <label class="input-label" for="concept">Your exhibit concept</label>
@@ -1258,23 +1097,18 @@
     // Key status bar
     refreshKeyStatus();
 
-    document.getElementById('signin-btn').addEventListener('click', openKeyModal);
+    // OAuth sign-in redirect
+    document.getElementById('oauth-btn').addEventListener('click', () => {
+      const redirectUrl = window.location.origin + window.location.pathname;
+      const appKey = encodeURIComponent('pk_nvaoh5YW2umswogk');
+      const url = encodeURIComponent(redirectUrl);
+      window.location.href = `https://enter.pollinations.ai/authorize?redirect_url=${url}&app_key=${appKey}`;
+    });
+
     document.getElementById('signout-btn').addEventListener('click', clearApiKey);
 
-    // Modal
-    document.getElementById('modal-close-btn').addEventListener('click', closeKeyModal);
-    document.getElementById('modal-skip-btn').addEventListener('click', closeKeyModal);
-    document.getElementById('modal-apply-btn').addEventListener('click', applyApiKey);
-    document.getElementById('modal-key-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') applyApiKey();
-      e.stopPropagation();
-    });
-    document.getElementById('modal-get-link').addEventListener('click', () => {
-      window.open('https://enter.pollinations.ai', '_blank', 'noopener');
-    });
-    document.getElementById('key-modal').addEventListener('click', e => {
-      if (e.target === e.currentTarget) closeKeyModal();
-    });
+    // Handle OAuth callback on page load
+    handleOAuthCallback();
 
     // Validate stored key
     if (apiKey) validateStoredKey();
@@ -1286,19 +1120,19 @@
   function refreshKeyStatus() {
     const dot  = document.getElementById('key-status-dot');
     const text = document.getElementById('key-status-text');
-    const sin  = document.getElementById('signin-btn');
-    const sout = document.getElementById('signout-btn');
+    const oauth = document.getElementById('oauth-btn');
+    const sout  = document.getElementById('signout-btn');
 
     if (apiKey) {
-      dot.className  = 'key-status-dot anonymous';
-      text.textContent = `Key active · pk_${apiKey.slice(3, 8)}...`;
-      sin.style.display  = 'none';
-      sout.style.display = 'inline';
+      dot.className  = 'key-status-dot active';
+      text.textContent = `Signed in · pk_${apiKey.slice(3, 8)}...`;
+      oauth.style.display = 'none';
+      sout.style.display  = 'inline';
     } else {
       dot.className  = 'key-status-dot';
       text.textContent = 'No key · using free tier (slower)';
-      sin.style.display  = 'inline-block';
-      sout.style.display = 'none';
+      oauth.style.display = 'inline-block';
+      sout.style.display  = 'none';
     }
   }
 
@@ -1309,64 +1143,33 @@
       .then(r => {
         if (r.ok) {
           document.getElementById('key-status-dot').className = 'key-status-dot active';
-          document.getElementById('key-status-text').textContent = `Key valid · pk_${apiKey.slice(3, 8)}...`;
+          document.getElementById('key-status-text').textContent = `Signed in · pk_${apiKey.slice(3, 8)}...`;
         } else {
           clearApiKey();
-          showToast('Stored key is invalid — please enter a new one.');
+          showToast('Session expired — please sign in again.');
         }
       })
       .catch(() => { /* keep state on network error */ });
   }
 
-  function openKeyModal() {
-    const modal = document.getElementById('key-modal');
-    const input = document.getElementById('modal-key-input');
-    const err   = document.getElementById('modal-error-msg');
-    input.value = apiKey ? `pk_${apiKey.slice(3)}` : '';
-    err.classList.remove('show');
-    input.classList.remove('error');
-    modal.classList.add('open');
-    setTimeout(() => input.focus(), 100);
-  }
-
-  function closeKeyModal() {
-    document.getElementById('key-modal').classList.remove('open');
-  }
-
-  function applyApiKey() {
-    const raw   = document.getElementById('modal-key-input').value.trim();
-    const err   = document.getElementById('modal-error-msg');
-    const input = document.getElementById('modal-key-input');
-    err.classList.remove('show');
-    input.classList.remove('error');
-
-    if (!raw) {
-      err.textContent = 'Please enter an API key.';
-      err.classList.add('show');
-      input.classList.add('error');
-      return;
+  function handleOAuthCallback() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token') || params.get('api_key') || params.get('key');
+    if (token) {
+      // Clean the URL without reloading
+      window.history.replaceState({}, '', window.location.pathname);
+      apiKey = token.startsWith('pk_') ? token : `pk_${token}`;
+      localStorage.setItem('ioe_pk', apiKey);
+      refreshKeyStatus();
+      showToast('Signed in with Pollinations ✓');
     }
-
-    const fullKey = raw.startsWith('pk_') ? raw : `pk_${raw}`;
-    if (!fullKey.startsWith('pk_') || fullKey.length < 16) {
-      err.textContent = 'Invalid key format. Must start with pk_ and be at least 16 characters.';
-      err.classList.add('show');
-      input.classList.add('error');
-      return;
-    }
-
-    apiKey = fullKey;
-    localStorage.setItem('ioe_pk', fullKey);
-    closeKeyModal();
-    refreshKeyStatus();
-    showToast('API key applied successfully.');
   }
 
   function clearApiKey() {
     apiKey = null;
     localStorage.removeItem('ioe_pk');
     refreshKeyStatus();
-    showToast('API key cleared.');
+    showToast('Signed out.');
   }
 
   // ══════════════════════════════════════
